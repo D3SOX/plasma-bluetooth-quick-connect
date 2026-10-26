@@ -5,7 +5,7 @@
         "Id": "me.d3sox.bluetoothquickconnect",
         "Name": "Bluetooth Quick Connect",
         "Description": "Connect or disconnect one chosen Bluetooth device with a single click, and see its status and battery level",
-        "Icon": "preferences-system-bluetooth",
+        "Icon": "/images/logo.png",
         "Authors": [
             {
                 "Name": "D3SOX"
@@ -13,7 +13,7 @@
         ],
         "Category": "System Information",
         "License": "GPL-2.0-or-later",
-        "Version": "1.2.1",
+        "Version": "1.2.2",
         "FormFactors": [
             "desktop",
             "panel"
