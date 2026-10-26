@@ -25,7 +25,9 @@ KCMUtils.SimpleKCM {
     property string cfg_deviceIconDefault
     property string cfg_icon
     property string cfg_iconDefault
-    property alias cfg_showBattery: showBatteryCheck.checked
+    property int cfg_batteryDisplay
+    property int cfg_batteryDisplayDefault
+    property bool cfg_showBattery
     property bool cfg_showBatteryDefault
     property alias cfg_powerOnAdapter: powerOnCheck.checked
     property bool cfg_powerOnAdapterDefault
@@ -163,10 +165,16 @@ KCMUtils.SimpleKCM {
             Kirigami.FormData.isSection: true
         }
 
-        QQC2.CheckBox {
-            id: showBatteryCheck
-            Kirigami.FormData.label: i18n("Panel:")
-            text: i18n("Show battery percentage on the icon")
+        QQC2.ComboBox {
+            Kirigami.FormData.label: i18n("Battery percentage:")
+            model: [
+                i18nc("@item:inlistbox battery percentage in the panel", "Hidden"),
+                i18nc("@item:inlistbox battery percentage in the panel", "Badge on the icon"),
+                i18nc("@item:inlistbox battery percentage in the panel", "Next to the icon"),
+            ]
+            // -1 means the setting predates this option, so follow the old on/off switch.
+            currentIndex: page.cfg_batteryDisplay >= 0 ? page.cfg_batteryDisplay : (page.cfg_showBattery ? 2 : 0)
+            onActivated: index => page.cfg_batteryDisplay = index
         }
 
         QQC2.CheckBox {

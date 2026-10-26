@@ -38,6 +38,11 @@ PlasmoidItem {
     readonly property int batteryPercent: connected && device.battery ? device.battery.percentage : -1
     readonly property string displayName: device ? device.name : (Plasmoid.configuration.deviceName || deviceAddress)
 
+    // 0 hidden, 1 badge on the icon, 2 next to the icon. Older versions only had the showBattery switch.
+    readonly property int batteryDisplay: Plasmoid.configuration.batteryDisplay >= 0
+        ? Plasmoid.configuration.batteryDisplay
+        : (Plasmoid.configuration.showBattery ? 2 : 0)
+
     readonly property string iconName: Plasmoid.configuration.icon
         || (device && device.icon)
         || Plasmoid.configuration.deviceIcon
@@ -346,11 +351,25 @@ PlasmoidItem {
 
         readonly property bool horizontal: Plasmoid.formFactor === PlasmaCore.Types.Horizontal
         readonly property bool vertical: Plasmoid.formFactor === PlasmaCore.Types.Vertical
+        readonly property bool hasBattery: root.batteryPercent >= 0
+        readonly property bool showBadge: root.batteryDisplay === 1 && hasBattery
+        readonly property bool showLabel: root.batteryDisplay === 2 && hasBattery
+        readonly property real spacing: Kirigami.Units.smallSpacing
 
-        Layout.minimumWidth: horizontal ? height : Kirigami.Units.iconSizes.small
-        Layout.maximumWidth: horizontal ? height : Infinity
-        Layout.minimumHeight: vertical ? width : Kirigami.Units.iconSizes.small
-        Layout.maximumHeight: vertical ? width : Infinity
+        readonly property real iconSize: {
+            if (horizontal) {
+                return height;
+            }
+            if (vertical) {
+                return width;
+            }
+            return Math.max(0, Math.min(width, height - (showLabel ? batteryLabel.implicitHeight : 0)));
+        }
+
+        Layout.minimumWidth: horizontal ? iconSize + (showLabel ? spacing + batteryLabel.implicitWidth : 0) : Kirigami.Units.iconSizes.small
+        Layout.maximumWidth: horizontal ? Layout.minimumWidth : Infinity
+        Layout.minimumHeight: vertical ? iconSize + (showLabel ? batteryLabel.implicitHeight : 0) : Kirigami.Units.iconSizes.small
+        Layout.maximumHeight: vertical ? Layout.minimumHeight : Infinity
 
         hoverEnabled: true
         acceptedButtons: Qt.LeftButton
@@ -361,9 +380,10 @@ PlasmoidItem {
 
             property real pulse: 1
 
-            anchors.centerIn: parent
-            width: Math.min(compact.width, compact.height)
-            height: width
+            x: compact.horizontal ? 0 : (compact.width - width) / 2
+            y: compact.vertical ? 0 : compact.horizontal ? (compact.height - height) / 2 : (compact.height - height - (compact.showLabel ? batteryLabel.implicitHeight : 0)) / 2
+            width: compact.iconSize
+            height: compact.iconSize
 
             source: root.iconName
             active: compact.containsMouse
@@ -377,14 +397,27 @@ PlasmoidItem {
                 NumberAnimation { from: 0.3; to: 1; duration: Kirigami.Units.veryLongDuration; easing.type: Easing.InOutQuad }
             }
 
-            // Same badge as Plasma's battery widget.
+            // Plasma's badge, as used by the Bluetooth and battery widgets. Just the number,
+            // so it stays in the corner instead of covering the whole bottom of the icon.
             WorkspaceComponents.BadgeOverlay {
                 anchors.bottom: parent.bottom
                 anchors.right: parent.right
-                visible: Plasmoid.configuration.showBattery && root.batteryPercent >= 0
-                text: i18nc("battery percentage badge on the panel icon", "%1%", root.batteryPercent)
+                visible: compact.showBadge
+                text: i18nc("battery percentage badge on the panel icon, number only", "%1", root.batteryPercent)
                 icon: deviceIcon
             }
+        }
+
+        PlasmaComponents3.Label {
+            id: batteryLabel
+
+            visible: compact.showLabel
+            x: compact.horizontal ? deviceIcon.width + compact.spacing : (compact.width - width) / 2
+            y: compact.horizontal ? (compact.height - height) / 2 : deviceIcon.y + deviceIcon.height
+
+            text: i18nc("battery percentage shown next to the panel icon", "%1%", root.batteryPercent)
+            font: compact.vertical ? Kirigami.Theme.smallFont : Kirigami.Theme.defaultFont
+            color: root.batteryPercent <= 15 ? Kirigami.Theme.negativeTextColor : Kirigami.Theme.textColor
         }
     }
 }

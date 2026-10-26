@@ -21,8 +21,12 @@
             <label>Custom icon. Empty means use the device's own icon</label>
             <default></default>
         </entry>
+        <entry name="batteryDisplay" type="Int">
+            <label>How to show the battery percentage in the panel: 0 hidden, 1 badge on the icon, 2 next to the icon. -1 means not set yet, use showBattery</label>
+            <default>-1</default>
+        </entry>
         <entry name="showBattery" type="Bool">
-            <label>Show the battery percentage as a badge on the icon</label>
+            <label>Old on/off setting from before batteryDisplay existed. Only read when batteryDisplay is -1</label>
             <default>false</default>
         </entry>
         <entry name="powerOnAdapter" type="Bool">
