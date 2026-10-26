@@ -10,7 +10,7 @@ A KDE Plasma 6 panel widget for one Bluetooth device, like your headphones. Avai
 - If Bluetooth is off, clicking turns it on first (can be disabled).
 - Shows a notification if connecting fails, e.g. when the device is off or out of range.
 - Optional battery percentage in the panel, either next to the icon or as a badge on it. Next to the icon, it turns red at 15% or below.
-- Optional notification when the battery is charged to a set level, 85% by default. Bluetooth doesn't report whether a device is charging, so it counts as charging while the level goes up. You won't be notified again until the level drops below a second value, 75% by default.
+- Optional notification when the battery is charged to a set level, 85% by default. It uses the device's charging state if the device reports one, as some game controllers do. Most headphones only report their battery level, so for those it counts as charging while the level goes up. You won't be notified again until the level drops below a second value, 75% by default.
 - Right-click menu: Connect/Disconnect and Bluetooth Settings.
 - Supports a global keyboard shortcut (Configure → Keyboard Shortcuts).
 
@@ -25,7 +25,7 @@ Want several devices? Add the widget once per device.
 
 The widget uses the same BluezQt library as Plasma's own Bluetooth widget, so there's nothing extra to install.
 
-Battery levels show up for devices that report them to BlueZ, which most modern headphones do.
+Battery levels show up for devices that report them to BlueZ, which most modern headphones do, or to UPower through the kernel, like some game controllers.
 
 ## Install
 

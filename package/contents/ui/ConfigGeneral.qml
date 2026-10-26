@@ -223,7 +223,7 @@ KCMUtils.SimpleKCM {
             Layout.maximumWidth: Kirigami.Units.gridUnit * 20
             wrapMode: Text.Wrap
             enabled: chargeCheck.checked
-            text: i18n("Bluetooth doesn't report whether a device is charging, so it counts as charging while its battery level goes up.")
+            text: i18n("Uses the device's charging state if it reports one. Most headphones only report their battery level, so for those it counts as charging while the level goes up.")
             opacity: 0.7
         }
     }

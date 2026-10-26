@@ -35,13 +35,25 @@ PlasmoidItem {
     readonly property bool radioOn: !BluezQt.Manager.bluetoothBlocked && BluezQt.Manager.usableAdapter !== null
     readonly property bool bluetoothOn: device ? (!BluezQt.Manager.bluetoothBlocked && adapter !== null && adapter.powered) : radioOn
     readonly property bool connected: device !== null && device.connected
-    readonly property int batteryPercent: connected && device.battery ? device.battery.percentage : -1
+    readonly property var upower: upowerLoader.item
+    // Most devices report their battery to BlueZ. Some, like game controllers, only through the kernel.
+    readonly property int batteryPercent: {
+        if (!connected) {
+            return -1;
+        }
+        if (device.battery) {
+            return device.battery.percentage;
+        }
+        return upower ? upower.percentage : -1;
+    }
     readonly property string displayName: device ? device.name : (Plasmoid.configuration.deviceName || deviceAddress)
 
-    // BlueZ doesn't report whether a device is charging, so assume it is while the level rises.
+    // Use the charging state when the device reports one. Most headphones only report their
+    // battery level, so for those assume the device is charging while the level rises.
     property int lastBatteryPercent: -1
-    property bool charging: false
+    property bool levelRising: false
     property bool chargeNotified: false
+    readonly property bool charging: upower && upower.charging !== undefined ? upower.charging : levelRising
 
     // 0 hidden, 1 badge on the icon, 2 next to the icon. Older versions only had the showBattery switch.
     readonly property int batteryDisplay: Plasmoid.configuration.batteryDisplay >= 0
@@ -222,21 +234,40 @@ PlasmoidItem {
             Plasmoid.configuration.deviceIcon = device.icon;
         }
     }
-    onDeviceAddressChanged: clearError()
-    onConnectedChanged: if (connected) clearError()
+    onDeviceAddressChanged: {
+        clearError();
+        searchUPower();
+    }
+    onConnectedChanged: {
+        if (connected) {
+            clearError();
+            searchUPower();
+        } else if (upower) {
+            upower.forget();
+        }
+    }
 
     onBatteryPercentChanged: {
         const percent = batteryPercent;
         if (percent < 0 || lastBatteryPercent < 0) {
             // Disconnected, or the first reading after connecting: start over from here.
             lastBatteryPercent = percent;
-            charging = false;
+            levelRising = false;
             chargeNotified = false;
+        } else {
+            // A flat reading never gets here, so a plateau keeps counting as rising.
+            levelRising = percent > lastBatteryPercent;
+            lastBatteryPercent = percent;
+        }
+        checkCharge();
+    }
+    onChargingChanged: checkCharge()
+
+    function checkCharge() {
+        const percent = batteryPercent;
+        if (percent < 0) {
             return;
         }
-        // A flat reading never gets here, so a plateau keeps counting as charging.
-        charging = percent > lastBatteryPercent;
-        lastBatteryPercent = percent;
         if (percent < Math.min(Plasmoid.configuration.chargeResetBelow, Plasmoid.configuration.chargeThreshold)) {
             chargeNotified = false;
         }
@@ -245,6 +276,11 @@ PlasmoidItem {
             chargeNotified = true;
             notify(i18n("Battery charged to %1%.", percent));
         }
+    }
+
+    function searchUPower() {
+        upowerSearch.tries = 0;
+        upowerSearch.restart();
     }
 
     Plasmoid.icon: iconName
@@ -323,6 +359,33 @@ PlasmoidItem {
         id: errorExpiry
         interval: 60000
         onTriggered: root.clearError()
+    }
+
+    // Needs Plasma's D-Bus QML module. Without it, upower stays null and only BlueZ is used.
+    Loader {
+        id: upowerLoader
+        source: "UPowerDevice.qml"
+        onLoaded: {
+            item.address = Qt.binding(() => root.deviceAddress);
+            root.searchUPower();
+        }
+    }
+
+    // The kernel adds a device's battery a moment after the device connects, so look a few times.
+    Timer {
+        id: upowerSearch
+        property int tries: 0
+        interval: 5000
+        repeat: true
+        triggeredOnStart: true
+        onTriggered: {
+            if (!root.upower || !root.connected || root.upower.devicePath !== "" || tries >= 6) {
+                stop();
+                return;
+            }
+            tries++;
+            root.upower.find();
+        }
     }
 
     Component {
