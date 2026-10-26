@@ -22,7 +22,7 @@
             <default></default>
         </entry>
         <entry name="showBattery" type="Bool">
-            <label>Show the battery percentage next to the icon</label>
+            <label>Show the battery percentage as a badge on the icon</label>
             <default>false</default>
         </entry>
         <entry name="powerOnAdapter" type="Bool">

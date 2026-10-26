@@ -11,6 +11,7 @@ import QtQuick.Layouts
 import org.kde.plasma.plasmoid
 import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.components as PlasmaComponents3
+import org.kde.plasma.workspace.components as WorkspaceComponents
 import org.kde.kirigami as Kirigami
 import org.kde.kcmutils as KCMUtils
 import org.kde.notification
@@ -345,23 +346,11 @@ PlasmoidItem {
 
         readonly property bool horizontal: Plasmoid.formFactor === PlasmaCore.Types.Horizontal
         readonly property bool vertical: Plasmoid.formFactor === PlasmaCore.Types.Vertical
-        readonly property bool showLabel: Plasmoid.configuration.showBattery && root.batteryPercent >= 0
-        readonly property real spacing: Kirigami.Units.smallSpacing
 
-        readonly property real iconSize: {
-            if (horizontal) {
-                return height;
-            }
-            if (vertical) {
-                return width;
-            }
-            return Math.max(0, Math.min(width, height - (showLabel ? batteryLabel.implicitHeight : 0)));
-        }
-
-        Layout.minimumWidth: horizontal ? iconSize + (showLabel ? spacing + batteryLabel.implicitWidth : 0) : Kirigami.Units.iconSizes.small
-        Layout.maximumWidth: horizontal ? Layout.minimumWidth : Infinity
-        Layout.minimumHeight: vertical ? iconSize + (showLabel ? batteryLabel.implicitHeight : 0) : Kirigami.Units.iconSizes.small
-        Layout.maximumHeight: vertical ? Layout.minimumHeight : Infinity
+        Layout.minimumWidth: horizontal ? height : Kirigami.Units.iconSizes.small
+        Layout.maximumWidth: horizontal ? height : Infinity
+        Layout.minimumHeight: vertical ? width : Kirigami.Units.iconSizes.small
+        Layout.maximumHeight: vertical ? width : Infinity
 
         hoverEnabled: true
         acceptedButtons: Qt.LeftButton
@@ -372,10 +361,9 @@ PlasmoidItem {
 
             property real pulse: 1
 
-            x: compact.horizontal ? 0 : (compact.width - width) / 2
-            y: compact.vertical ? 0 : compact.horizontal ? (compact.height - height) / 2 : (compact.height - height - (compact.showLabel ? batteryLabel.implicitHeight : 0)) / 2
-            width: compact.iconSize
-            height: compact.iconSize
+            anchors.centerIn: parent
+            width: Math.min(compact.width, compact.height)
+            height: width
 
             source: root.iconName
             active: compact.containsMouse
@@ -388,18 +376,15 @@ PlasmoidItem {
                 NumberAnimation { from: 1; to: 0.3; duration: Kirigami.Units.veryLongDuration; easing.type: Easing.InOutQuad }
                 NumberAnimation { from: 0.3; to: 1; duration: Kirigami.Units.veryLongDuration; easing.type: Easing.InOutQuad }
             }
-        }
 
-        PlasmaComponents3.Label {
-            id: batteryLabel
-
-            visible: compact.showLabel
-            x: compact.horizontal ? deviceIcon.width + compact.spacing : (compact.width - width) / 2
-            y: compact.horizontal ? (compact.height - height) / 2 : deviceIcon.y + deviceIcon.height
-
-            text: i18nc("battery percentage shown in the panel", "%1%", root.batteryPercent)
-            font: compact.vertical ? Kirigami.Theme.smallFont : Kirigami.Theme.defaultFont
-            color: root.batteryPercent <= 15 ? Kirigami.Theme.negativeTextColor : Kirigami.Theme.textColor
+            // Same badge as Plasma's battery widget.
+            WorkspaceComponents.BadgeOverlay {
+                anchors.bottom: parent.bottom
+                anchors.right: parent.right
+                visible: Plasmoid.configuration.showBattery && root.batteryPercent >= 0
+                text: i18nc("battery percentage badge on the panel icon", "%1%", root.batteryPercent)
+                icon: deviceIcon
+            }
         }
     }
 }

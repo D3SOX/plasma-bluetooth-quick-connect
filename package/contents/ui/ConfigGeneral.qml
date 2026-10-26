@@ -166,7 +166,7 @@ KCMUtils.SimpleKCM {
         QQC2.CheckBox {
             id: showBatteryCheck
             Kirigami.FormData.label: i18n("Panel:")
-            text: i18n("Show battery percentage next to the icon")
+            text: i18n("Show battery percentage on the icon")
         }
 
         QQC2.CheckBox {
