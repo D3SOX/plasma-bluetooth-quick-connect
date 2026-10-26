@@ -3,6 +3,8 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
+./po/compile.sh
+
 id=$(python3 -c 'import json; print(json.load(open("package/metadata.json"))["KPlugin"]["Id"])')
 installed=$(kpackagetool6 -t Plasma/Applet -l)
 if grep -qx "$id" <<<"$installed"; then

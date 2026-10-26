@@ -21,6 +21,9 @@ jobs:
             exit 1
           fi
 
+      - name: Install gettext for the translations
+        run: sudo apt-get update && sudo apt-get install -y gettext
+
       - name: Build the .plasmoid
         id: build
         run: echo "file=$(./build.sh)" >> "$GITHUB_OUTPUT"

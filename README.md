@@ -85,6 +85,20 @@ Remove the widget from your panel, then run:
 kpackagetool6 -t Plasma/Applet -r me.d3sox.bluetoothquickconnect
 ```
 
+## Translations
+
+Translations live in [`po/`](po), one `<lang>.po` file per language. To add a language, for example Dutch:
+
+```sh
+msginit --no-translator --locale=nl --input=po/template.pot --output-file=po/nl.po
+```
+
+Then translate the strings in `po/nl.po` with a PO editor such as Lokalize or Poedit, and open a pull request. The name and description in Add Widgets come from `package/metadata.json`. To translate them, add `"Name[nl]"` and `"Description[nl]"` next to `Name` and `Description` there.
+
+To try your translation, run `./install.sh` and restart Plasma. The script compiles the translations into the widget, which needs `msgfmt` from gettext.
+
+When the widget's text changes, `./po/update.sh` updates `po/template.pot` and merges the new strings into every language file.
+
 ## Build a `.plasmoid` package
 
 ```sh
