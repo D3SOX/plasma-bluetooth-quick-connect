@@ -1,4 +1,4 @@
-# Bluetooth Quick Connect
+<h1><img src="assets/logo.png" alt="" width="40" height="40" align="left">Bluetooth Quick Connect</h1>
 
 A KDE Plasma 6 panel widget for one Bluetooth device, like your headphones. Available on the [KDE Store](https://store.kde.org/p/2380365).
 
