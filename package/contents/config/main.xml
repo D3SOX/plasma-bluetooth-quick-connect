@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
+      http://www.kde.org/standards/kcfg/1.0/kcfg.xsd">
+    <kcfgfile name=""/>
+    <group name="General">
+        <entry name="deviceAddress" type="String">
+            <label>Bluetooth address of the device to control</label>
+            <default></default>
+        </entry>
+        <entry name="deviceName" type="String">
+            <label>Last known name of the device, shown while it is unavailable</label>
+            <default></default>
+        </entry>
+        <entry name="deviceIcon" type="String">
+            <label>Last known icon of the device, shown while it is unavailable</label>
+            <default></default>
+        </entry>
+        <entry name="icon" type="String">
+            <label>Custom icon. Empty means use the device's own icon</label>
+            <default></default>
+        </entry>
+        <entry name="showBattery" type="Bool">
+            <label>Show the battery percentage next to the icon</label>
+            <default>false</default>
+        </entry>
+        <entry name="powerOnAdapter" type="Bool">
+            <label>Turn Bluetooth on when connecting while it is off</label>
+            <default>true</default>
+        </entry>
+        <entry name="notifyOnError" type="Bool">
+            <label>Show a notification when connecting or disconnecting fails</label>
+            <default>true</default>
+        </entry>
+    </group>
+</kcfg>

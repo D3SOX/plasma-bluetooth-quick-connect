@@ -1,0 +1,25 @@
+{
+    "KPackageStructure": "Plasma/Applet",
+    "X-Plasma-API-Minimum-Version": "6.0",
+    "KPlugin": {
+        "Id": "me.d3sox.bluetoothquickconnect",
+        "Name": "Bluetooth Quick Connect",
+        "Description": "Connect or disconnect one chosen Bluetooth device with a single click, and see its status and battery level",
+        "Icon": "preferences-system-bluetooth",
+        "Authors": [
+            {
+                "Name": "D3SOX"
+            }
+        ],
+        "Category": "System Information",
+        "License": "GPL-2.0-or-later",
+        "Version": "1.0.0",
+        "FormFactors": [
+            "desktop",
+            "panel"
+        ],
+        "EnabledByDefault": true,
+        "Website": "https://github.com/D3SOX/plasma-bluetooth-quick-connect",
+        "BugReportUrl": "https://github.com/D3SOX/plasma-bluetooth-quick-connect/issues"
+    }
+}
