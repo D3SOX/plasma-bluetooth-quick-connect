@@ -366,7 +366,10 @@ PlasmoidItem {
             return Math.max(0, Math.min(width, height - (showLabel ? batteryLabel.implicitHeight : 0)));
         }
 
-        Layout.minimumWidth: horizontal ? iconSize + (showLabel ? spacing + batteryLabel.implicitWidth : 0) : Kirigami.Units.iconSizes.small
+        // In a horizontal panel the badge hangs off the icon's right edge, so make room for it.
+        readonly property real badgeOverflow: showBadge && horizontal ? Math.max(0, batteryBadge.x + batteryBadge.width - iconSize) : 0
+
+        Layout.minimumWidth: horizontal ? iconSize + badgeOverflow + (showLabel ? spacing + batteryLabel.implicitWidth : 0) : Kirigami.Units.iconSizes.small
         Layout.maximumWidth: horizontal ? Layout.minimumWidth : Infinity
         Layout.minimumHeight: vertical ? iconSize + (showLabel ? batteryLabel.implicitHeight : 0) : Kirigami.Units.iconSizes.small
         Layout.maximumHeight: vertical ? Layout.minimumHeight : Infinity
@@ -397,13 +400,15 @@ PlasmoidItem {
                 NumberAnimation { from: 0.3; to: 1; duration: Kirigami.Units.veryLongDuration; easing.type: Easing.InOutQuad }
             }
 
-            // Plasma's badge, as used by the Bluetooth and battery widgets. Just the number,
-            // so it stays in the corner instead of covering the whole bottom of the icon.
+            // Plasma's badge, as used by the Bluetooth and battery widgets. In a horizontal panel it
+            // starts at the middle of the icon and hangs off its right edge, so it covers one side
+            // like a notification count instead of the whole bottom.
             WorkspaceComponents.BadgeOverlay {
+                id: batteryBadge
+                x: compact.horizontal ? Math.round(parent.width * 0.45) : parent.width - width
                 anchors.bottom: parent.bottom
-                anchors.right: parent.right
                 visible: compact.showBadge
-                text: i18nc("battery percentage badge on the panel icon, number only", "%1", root.batteryPercent)
+                text: i18nc("battery percentage badge on the panel icon", "%1%", root.batteryPercent)
                 icon: deviceIcon
             }
         }
