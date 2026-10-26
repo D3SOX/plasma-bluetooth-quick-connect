@@ -38,6 +38,11 @@ PlasmoidItem {
     readonly property int batteryPercent: connected && device.battery ? device.battery.percentage : -1
     readonly property string displayName: device ? device.name : (Plasmoid.configuration.deviceName || deviceAddress)
 
+    // BlueZ doesn't report whether a device is charging, so assume it is while the level rises.
+    property int lastBatteryPercent: -1
+    property bool charging: false
+    property bool chargeNotified: false
+
     // 0 hidden, 1 badge on the icon, 2 next to the icon. Older versions only had the showBattery switch.
     readonly property int batteryDisplay: Plasmoid.configuration.batteryDisplay >= 0
         ? Plasmoid.configuration.batteryDisplay
@@ -152,14 +157,18 @@ PlasmoidItem {
         lastErrorDetail = detail || "";
         errorExpiry.restart();
         if (Plasmoid.configuration.notifyOnError) {
-            const notification = notificationComponent.createObject(root, {
-                title: displayName || i18n("Bluetooth"),
-                text: message,
-                iconName: iconName,
-            });
-            notification.closed.connect(() => notification.destroy());
-            notification.sendEvent();
+            notify(message);
         }
+    }
+
+    function notify(message) {
+        const notification = notificationComponent.createObject(root, {
+            title: displayName || i18n("Bluetooth"),
+            text: message,
+            iconName: iconName,
+        });
+        notification.closed.connect(() => notification.destroy());
+        notification.sendEvent();
     }
 
     function clearError() {
@@ -215,6 +224,28 @@ PlasmoidItem {
     }
     onDeviceAddressChanged: clearError()
     onConnectedChanged: if (connected) clearError()
+
+    onBatteryPercentChanged: {
+        const percent = batteryPercent;
+        if (percent < 0 || lastBatteryPercent < 0) {
+            // Disconnected, or the first reading after connecting: start over from here.
+            lastBatteryPercent = percent;
+            charging = false;
+            chargeNotified = false;
+            return;
+        }
+        // A flat reading never gets here, so a plateau keeps counting as charging.
+        charging = percent > lastBatteryPercent;
+        lastBatteryPercent = percent;
+        if (percent < Math.min(Plasmoid.configuration.chargeResetBelow, Plasmoid.configuration.chargeThreshold)) {
+            chargeNotified = false;
+        }
+        if (Plasmoid.configuration.notifyOnCharge && charging && !chargeNotified
+                && percent >= Plasmoid.configuration.chargeThreshold) {
+            chargeNotified = true;
+            notify(i18n("Battery charged to %1%.", percent));
+        }
+    }
 
     Plasmoid.icon: iconName
     Plasmoid.title: displayName || i18n("Bluetooth Quick Connect")

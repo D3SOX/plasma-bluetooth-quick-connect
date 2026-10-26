@@ -37,5 +37,21 @@
             <label>Show a notification when connecting or disconnecting fails</label>
             <default>true</default>
         </entry>
+        <entry name="notifyOnCharge" type="Bool">
+            <label>Show a notification when the battery is charged to chargeThreshold</label>
+            <default>false</default>
+        </entry>
+        <entry name="chargeThreshold" type="Int">
+            <label>Battery percentage to notify at while charging</label>
+            <default>85</default>
+            <min>1</min>
+            <max>100</max>
+        </entry>
+        <entry name="chargeResetBelow" type="Int">
+            <label>Notify again only after the battery dropped below this percentage</label>
+            <default>75</default>
+            <min>0</min>
+            <max>100</max>
+        </entry>
     </group>
 </kcfg>

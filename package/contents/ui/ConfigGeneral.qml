@@ -33,6 +33,12 @@ KCMUtils.SimpleKCM {
     property bool cfg_powerOnAdapterDefault
     property alias cfg_notifyOnError: notifyCheck.checked
     property bool cfg_notifyOnErrorDefault
+    property alias cfg_notifyOnCharge: chargeCheck.checked
+    property bool cfg_notifyOnChargeDefault
+    property alias cfg_chargeThreshold: thresholdSpin.value
+    property int cfg_chargeThresholdDefault
+    property alias cfg_chargeResetBelow: resetBelowSpin.value
+    property int cfg_chargeResetBelowDefault
 
     // Paired devices, plus the saved one if it is currently missing.
     readonly property var deviceOptions: {
@@ -186,6 +192,39 @@ KCMUtils.SimpleKCM {
         QQC2.CheckBox {
             id: notifyCheck
             text: i18n("Notify when connecting or disconnecting fails")
+        }
+
+        QQC2.CheckBox {
+            id: chargeCheck
+            text: i18n("Notify when the battery is charged")
+        }
+
+        QQC2.SpinBox {
+            id: thresholdSpin
+            Kirigami.FormData.label: i18n("Notify at:")
+            enabled: chargeCheck.checked
+            from: 1
+            to: 100
+            textFromValue: (value, locale) => i18nc("battery percentage", "%1%", value)
+            valueFromText: (text, locale) => parseInt(text)
+        }
+
+        QQC2.SpinBox {
+            id: resetBelowSpin
+            Kirigami.FormData.label: i18n("Notify again after dropping below:")
+            enabled: chargeCheck.checked
+            from: 0
+            to: 100
+            textFromValue: (value, locale) => i18nc("battery percentage", "%1%", value)
+            valueFromText: (text, locale) => parseInt(text)
+        }
+
+        QQC2.Label {
+            Layout.maximumWidth: Kirigami.Units.gridUnit * 20
+            wrapMode: Text.Wrap
+            enabled: chargeCheck.checked
+            text: i18n("Bluetooth doesn't report whether a device is charging, so it counts as charging while its battery level goes up.")
+            opacity: 0.7
         }
     }
 }
