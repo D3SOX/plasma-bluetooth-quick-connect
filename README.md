@@ -1,6 +1,6 @@
 # Bluetooth Quick Connect
 
-A KDE Plasma 6 panel widget for one Bluetooth device, like your headphones.
+A KDE Plasma 6 panel widget for one Bluetooth device, like your headphones. Available on the [KDE Store](https://store.kde.org/p/2380365).
 
 ![The widget in the panel, showing the battery level and its hover tooltip](screenshots/panel.png)
 
@@ -27,6 +27,10 @@ The widget uses the same BluezQt library as Plasma's own Bluetooth widget, so th
 Battery levels show up for devices that report them to BlueZ, which most modern headphones do.
 
 ## Install
+
+### From the KDE Store
+
+Right-click your panel → **Add or Manage Widgets** → **Get New Widgets** → **Download New Plasma Widgets**, then search for **Bluetooth Quick Connect**. You can also get it from its [store page](https://store.kde.org/p/2380365).
 
 ### From a release
 
