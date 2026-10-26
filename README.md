@@ -2,6 +2,8 @@
 
 A KDE Plasma 6 panel widget for one Bluetooth device, like your headphones.
 
+![The widget in the panel, showing the battery level and its hover tooltip](screenshots/panel.png)
+
 - **Click** the icon to connect, click again to disconnect.
 - **Hover** to see whether it's connected and its battery level.
 - The icon is dimmed while disconnected and pulses while connecting.
@@ -13,6 +15,8 @@ A KDE Plasma 6 panel widget for one Bluetooth device, like your headphones.
 
 Want several devices? Add the widget once per device.
 
+![Settings: device picker, icon, battery label and behavior options](screenshots/settings.png)
+
 ## Requirements
 
 - KDE Plasma 6
@@ -23,6 +27,15 @@ The widget uses the same BluezQt library as Plasma's own Bluetooth widget, so th
 Battery levels show up for devices that report them to BlueZ, which most modern headphones do.
 
 ## Install
+
+### From a release
+
+1. Download the `.plasmoid` file from the [latest release](https://github.com/D3SOX/plasma-bluetooth-quick-connect/releases/latest).
+2. Install it:
+
+   ```sh
+   kpackagetool6 -t Plasma/Applet -i me.d3sox.bluetoothquickconnect-*.plasmoid
+   ```
 
 ### From source
 
@@ -41,6 +54,15 @@ This installs the widget for your user into `~/.local/share/plasma/plasmoids/`.
 3. Right-click the new icon → **Configure…** and pick your device.
 
 ## Update
+
+If you installed from a release, download the new `.plasmoid` and run:
+
+```sh
+kpackagetool6 -t Plasma/Applet -u me.d3sox.bluetoothquickconnect-*.plasmoid
+systemctl --user restart plasma-plasmashell
+```
+
+If you installed from source:
 
 ```sh
 cd plasma-bluetooth-quick-connect
@@ -65,7 +87,7 @@ kpackagetool6 -t Plasma/Applet -r me.d3sox.bluetoothquickconnect
 ./build.sh   # writes dist/me.d3sox.bluetoothquickconnect-<version>.plasmoid
 ```
 
-You can install that file with `kpackagetool6 -t Plasma/Applet -i <file>`, or upload it to the [KDE Store](https://store.kde.org) under "Plasma 6 Applets".
+Pushing a `v*` tag that matches the version in `package/metadata.json` builds this file and publishes it as a GitHub release.
 
 ## License
 

@@ -1,0 +1,32 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Check the tag matches the widget version
+        run: |
+          version=$(jq -r .KPlugin.Version package/metadata.json)
+          if [ "v$version" != "$GITHUB_REF_NAME" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME doesn't match version $version in package/metadata.json"
+            exit 1
+          fi
+
+      - name: Build the .plasmoid
+        id: build
+        run: echo "file=$(./build.sh)" >> "$GITHUB_OUTPUT"
+
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          FILE: ${{ steps.build.outputs.file }}
+        run: gh release create "$GITHUB_REF_NAME" "$FILE" --title "$GITHUB_REF_NAME" --generate-notes
