@@ -4,8 +4,10 @@
     "KPlugin": {
         "Id": "me.d3sox.bluetoothquickconnect",
         "Name": "Bluetooth Quick Connect",
+        "Name[de]": "Bluetooth-Schnellverbindung",
         "Name[nl]": "Snelle bluetoothverbinding",
         "Description": "Connect or disconnect one chosen Bluetooth device with a single click, and see its status and battery level",
+        "Description[de]": "Ein ausgewähltes Bluetooth-Gerät mit einem Klick verbinden oder trennen und seinen Status und Akkustand sehen",
         "Description[nl]": "Maak met één muisklik verbinding of verbreek de verbinding met een zelfgekozen bluetoothapparaat, en bekijk de status en het accuniveau",
         "Icon": "/images/logo.png",
         "Authors": [
