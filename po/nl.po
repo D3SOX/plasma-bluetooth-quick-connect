@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/D3SOX/plasma-bluetooth-quick-"
 "connect/issues\n"
 "POT-Creation-Date: 2026-10-26 20:53+0100\n"
-"PO-Revision-Date: 2026-10-27 10:39+0100\n"
+"PO-Revision-Date: 2026-10-27 11:23+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -62,7 +62,7 @@ msgstr "Eigen pictogram"
 
 #: package/contents/ui/ConfigGeneral.qml:133
 msgid "Using the device's own icon"
-msgstr "Apparaatpictogram tonen"
+msgstr "Het apparaatpictogram wordt gebruikt"
 
 #: package/contents/ui/ConfigGeneral.qml:157
 msgctxt "@item:inmenu Open icon chooser dialog"
@@ -91,7 +91,7 @@ msgstr "Embleem op pictogram"
 #: package/contents/ui/ConfigGeneral.qml:179
 msgctxt "@item:inlistbox battery percentage in the panel"
 msgid "Next to the icon"
-msgstr "Embleem naast pictogram"
+msgstr "Naast pictogram"
 
 #: package/contents/ui/ConfigGeneral.qml:188
 msgid "Behavior:"
@@ -103,7 +103,7 @@ msgstr "Bluetooth inschakelen indien uitgeschakeld"
 
 #: package/contents/ui/ConfigGeneral.qml:194
 msgid "Notify when connecting or disconnecting fails"
-msgstr "Melding tonen bij (verbroken) verbinding"
+msgstr "Melding tonen als (verbroken) verbinding mislukt"
 
 #: package/contents/ui/ConfigGeneral.qml:199
 msgid "Notify when the battery is charged"
@@ -131,8 +131,8 @@ msgid ""
 "level goes up."
 msgstr ""
 "Vraag de oplaadstatus van het apparaat op, indien mogelijk. De meeste "
-"koptelefoons geven alleen het accuniveau door, dus wordt alleen gemeld dat "
-"de koptelefoon wordt opgeladen."
+"koptelefoons geven alleen het accuniveau door, dus wordt tijdens het "
+"opladen alleen gemeld dat de koptelefoon wordt opgeladen."
 
 #: package/contents/ui/main.qml:93
 msgid "Bluetooth is turned off."
@@ -220,7 +220,7 @@ msgstr "De accu is opgeladen tot %1%."
 
 #: package/contents/ui/main.qml:287 package/contents/ui/main.qml:293
 msgid "Bluetooth Quick Connect"
-msgstr "Snel verbinden"
+msgstr "Snelle bluetoothverbinding"
 
 #: package/contents/ui/main.qml:299 package/contents/ui/main.qml:438
 msgid "Disconnect"
