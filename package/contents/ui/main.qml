@@ -530,6 +530,24 @@ PlasmoidItem {
         onClicked: mouse => root.runAction(mouse.button === Qt.MiddleButton
             ? Plasmoid.configuration.middleClickAction : Plasmoid.configuration.leftClickAction)
 
+        activeFocusOnTab: true
+        Keys.onPressed: event => {
+            switch (event.key) {
+            case Qt.Key_Space:
+            case Qt.Key_Enter:
+            case Qt.Key_Return:
+            case Qt.Key_Select:
+                root.runAction(Plasmoid.configuration.leftClickAction);
+                event.accepted = true;
+                break;
+            }
+        }
+
+        Accessible.name: Plasmoid.title
+        Accessible.description: root.toolTipSubText
+        Accessible.role: Accessible.Button
+        Accessible.onPressAction: root.runAction(Plasmoid.configuration.leftClickAction)
+
         Kirigami.Icon {
             id: deviceIcon
 

@@ -301,13 +301,13 @@ msgstr ""
 msgid "Choose Device…"
 msgstr ""
 
-#: package/contents/ui/main.qml:571
+#: package/contents/ui/main.qml:589
 #, kde-format
 msgctxt "battery percentage badge on the panel icon"
 msgid "%1%"
 msgstr ""
 
-#: package/contents/ui/main.qml:583
+#: package/contents/ui/main.qml:601
 #, kde-format
 msgctxt "battery percentage shown next to the panel icon"
 msgid "%1%"
