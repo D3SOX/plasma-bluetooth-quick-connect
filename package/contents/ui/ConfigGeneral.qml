@@ -29,6 +29,8 @@ KCMUtils.SimpleKCM {
     property int cfg_batteryDisplayDefault
     property bool cfg_showBattery
     property bool cfg_showBatteryDefault
+    property alias cfg_lowBatteryLevel: lowBatterySpin.value
+    property int cfg_lowBatteryLevelDefault
     property alias cfg_powerOnAdapter: powerOnCheck.checked
     property bool cfg_powerOnAdapterDefault
     property alias cfg_notifyOnError: notifyCheck.checked
@@ -172,6 +174,7 @@ KCMUtils.SimpleKCM {
         }
 
         QQC2.ComboBox {
+            id: batteryCombo
             Kirigami.FormData.label: i18n("Battery percentage:")
             model: [
                 i18nc("@item:inlistbox battery percentage in the panel", "Hidden"),
@@ -181,6 +184,16 @@ KCMUtils.SimpleKCM {
             // -1 means the setting predates this option, so follow the old on/off switch.
             currentIndex: page.cfg_batteryDisplay >= 0 ? page.cfg_batteryDisplay : (page.cfg_showBattery ? 2 : 0)
             onActivated: index => page.cfg_batteryDisplay = index
+        }
+
+        QQC2.SpinBox {
+            id: lowBatterySpin
+            Kirigami.FormData.label: i18n("Show in red at or below:")
+            enabled: batteryCombo.currentIndex !== 0
+            from: 0
+            to: 100
+            textFromValue: (value, locale) => i18nc("battery percentage", "%1%", value)
+            valueFromText: (text, locale) => parseInt(text)
         }
 
         QQC2.CheckBox {

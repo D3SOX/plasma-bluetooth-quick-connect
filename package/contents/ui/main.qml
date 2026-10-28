@@ -455,6 +455,8 @@ PlasmoidItem {
         readonly property bool showBadge: root.batteryDisplay === 1 && hasBattery
         readonly property bool showLabel: root.batteryDisplay === 2 && hasBattery
         readonly property real spacing: Kirigami.Units.smallSpacing
+        readonly property bool lowBattery: root.batteryPercent <= Plasmoid.configuration.lowBatteryLevel
+        readonly property color batteryColor: lowBattery ? Kirigami.Theme.negativeTextColor : Kirigami.Theme.textColor
 
         readonly property real iconSize: {
             if (horizontal) {
@@ -508,6 +510,14 @@ PlasmoidItem {
                 x: compact.horizontal ? Math.round(parent.width * 0.45) : parent.width - width
                 anchors.bottom: parent.bottom
                 visible: compact.showBadge
+                // Plasma 6.8 and later draw it with Kirigami.Badge, which has its own text color. Before that,
+                // its label took the color from the theme.
+                Kirigami.Theme.textColor: compact.batteryColor
+                Component.onCompleted: {
+                    if ("customTextColor" in batteryBadge) {
+                        batteryBadge.customTextColor = Qt.binding(() => compact.lowBattery ? Kirigami.Theme.negativeTextColor : "transparent");
+                    }
+                }
                 text: i18nc("battery percentage badge on the panel icon", "%1%", root.batteryPercent)
                 icon: deviceIcon
             }
@@ -522,7 +532,7 @@ PlasmoidItem {
 
             text: i18nc("battery percentage shown next to the panel icon", "%1%", root.batteryPercent)
             font: compact.vertical ? Kirigami.Theme.smallFont : Kirigami.Theme.defaultFont
-            color: root.batteryPercent <= 15 ? Kirigami.Theme.negativeTextColor : Kirigami.Theme.textColor
+            color: compact.batteryColor
         }
     }
 }

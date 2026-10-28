@@ -29,6 +29,12 @@
             <label>Old on/off setting from before batteryDisplay existed. Only read when batteryDisplay is -1</label>
             <default>false</default>
         </entry>
+        <entry name="lowBatteryLevel" type="Int">
+            <label>Battery percentage at or below which the panel shows it in red</label>
+            <default>15</default>
+            <min>0</min>
+            <max>100</max>
+        </entry>
         <entry name="powerOnAdapter" type="Bool">
             <label>Turn Bluetooth on when connecting while it is off</label>
             <default>true</default>

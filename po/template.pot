@@ -22,108 +22,113 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#: package/contents/ui/ConfigGeneral.qml:56
+#: package/contents/ui/ConfigGeneral.qml:58
 msgid "%1 (not available)"
 msgstr ""
 
-#: package/contents/ui/ConfigGeneral.qml:68
+#: package/contents/ui/ConfigGeneral.qml:70
 msgid "Device:"
 msgstr ""
 
-#: package/contents/ui/ConfigGeneral.qml:81
+#: package/contents/ui/ConfigGeneral.qml:83
 msgid "No paired devices"
 msgstr ""
 
-#: package/contents/ui/ConfigGeneral.qml:82
+#: package/contents/ui/ConfigGeneral.qml:84
 msgid "Choose a device…"
 msgstr ""
 
-#: package/contents/ui/ConfigGeneral.qml:106 package/contents/ui/main.qml:309
+#: package/contents/ui/ConfigGeneral.qml:108 package/contents/ui/main.qml:309
 msgid "Bluetooth Settings…"
 msgstr ""
 
-#: package/contents/ui/ConfigGeneral.qml:113
+#: package/contents/ui/ConfigGeneral.qml:115
 msgid "Address: %1"
 msgstr ""
 
-#: package/contents/ui/ConfigGeneral.qml:121
+#: package/contents/ui/ConfigGeneral.qml:123
 msgid ""
 "Pair your device in the Bluetooth settings first. It will then show up here."
 msgstr ""
 
-#: package/contents/ui/ConfigGeneral.qml:127
+#: package/contents/ui/ConfigGeneral.qml:129
 msgid "Icon:"
 msgstr ""
 
-#: package/contents/ui/ConfigGeneral.qml:133
+#: package/contents/ui/ConfigGeneral.qml:135
 msgid "Custom icon"
 msgstr ""
 
-#: package/contents/ui/ConfigGeneral.qml:133
+#: package/contents/ui/ConfigGeneral.qml:135
 msgid "Using the device's own icon"
 msgstr ""
 
-#: package/contents/ui/ConfigGeneral.qml:157
+#: package/contents/ui/ConfigGeneral.qml:159
 msgctxt "@item:inmenu Open icon chooser dialog"
 msgid "Choose…"
 msgstr ""
 
-#: package/contents/ui/ConfigGeneral.qml:162
+#: package/contents/ui/ConfigGeneral.qml:164
 msgctxt "@item:inmenu"
 msgid "Use Device Icon"
 msgstr ""
 
-#: package/contents/ui/ConfigGeneral.qml:175
+#: package/contents/ui/ConfigGeneral.qml:178
 msgid "Battery percentage:"
 msgstr ""
 
-#: package/contents/ui/ConfigGeneral.qml:177
+#: package/contents/ui/ConfigGeneral.qml:180
 msgctxt "@item:inlistbox battery percentage in the panel"
 msgid "Hidden"
 msgstr ""
 
-#: package/contents/ui/ConfigGeneral.qml:178
+#: package/contents/ui/ConfigGeneral.qml:181
 msgctxt "@item:inlistbox battery percentage in the panel"
 msgid "Badge on the icon"
 msgstr ""
 
-#: package/contents/ui/ConfigGeneral.qml:179
+#: package/contents/ui/ConfigGeneral.qml:182
 msgctxt "@item:inlistbox battery percentage in the panel"
 msgid "Next to the icon"
 msgstr ""
 
-#: package/contents/ui/ConfigGeneral.qml:188
-msgid "Behavior:"
+#: package/contents/ui/ConfigGeneral.qml:191
+msgid "Show in red at or below:"
 msgstr ""
 
-#: package/contents/ui/ConfigGeneral.qml:189
-msgid "Turn on Bluetooth if it is off"
-msgstr ""
-
-#: package/contents/ui/ConfigGeneral.qml:194
-msgid "Notify when connecting or disconnecting fails"
-msgstr ""
-
-#: package/contents/ui/ConfigGeneral.qml:199
-msgid "Notify when the battery is charged"
-msgstr ""
-
-#: package/contents/ui/ConfigGeneral.qml:204
-msgid "Notify at:"
-msgstr ""
-
-#: package/contents/ui/ConfigGeneral.qml:208
-#: package/contents/ui/ConfigGeneral.qml:218
+#: package/contents/ui/ConfigGeneral.qml:195
+#: package/contents/ui/ConfigGeneral.qml:221
+#: package/contents/ui/ConfigGeneral.qml:231
 #, kde-format
 msgctxt "battery percentage"
 msgid "%1%"
 msgstr ""
 
-#: package/contents/ui/ConfigGeneral.qml:214
+#: package/contents/ui/ConfigGeneral.qml:201
+msgid "Behavior:"
+msgstr ""
+
+#: package/contents/ui/ConfigGeneral.qml:202
+msgid "Turn on Bluetooth if it is off"
+msgstr ""
+
+#: package/contents/ui/ConfigGeneral.qml:207
+msgid "Notify when connecting or disconnecting fails"
+msgstr ""
+
+#: package/contents/ui/ConfigGeneral.qml:212
+msgid "Notify when the battery is charged"
+msgstr ""
+
+#: package/contents/ui/ConfigGeneral.qml:217
+msgid "Notify at:"
+msgstr ""
+
+#: package/contents/ui/ConfigGeneral.qml:227
 msgid "Notify again after dropping below:"
 msgstr ""
 
-#: package/contents/ui/ConfigGeneral.qml:226
+#: package/contents/ui/ConfigGeneral.qml:239
 msgid ""
 "Uses the device's charging state if it reports one. Most headphones only "
 "report their battery level, so for those it counts as charging while the "
@@ -232,13 +237,13 @@ msgstr ""
 msgid "Choose Device…"
 msgstr ""
 
-#: package/contents/ui/main.qml:511
+#: package/contents/ui/main.qml:521
 #, kde-format
 msgctxt "battery percentage badge on the panel icon"
 msgid "%1%"
 msgstr ""
 
-#: package/contents/ui/main.qml:523
+#: package/contents/ui/main.qml:533
 #, kde-format
 msgctxt "battery percentage shown next to the panel icon"
 msgid "%1%"
