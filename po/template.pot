@@ -6,10 +6,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: plasma_applet_me.d3sox.bluetoothquickconnect 1.4.0\n"
+"Project-Id-Version: plasma_applet_me.d3sox.bluetoothquickconnect 1.5.0\n"
 "Report-Msgid-Bugs-To: https://github.com/D3SOX/plasma-bluetooth-quick-"
 "connect/issues\n"
-"POT-Creation-Date: 2026-10-26 20:53+0100\n"
+"POT-Creation-Date: 2026-10-28 16:04+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,7 +38,7 @@ msgstr ""
 msgid "Choose a device…"
 msgstr ""
 
-#: package/contents/ui/ConfigGeneral.qml:106 package/contents/ui/main.qml:305
+#: package/contents/ui/ConfigGeneral.qml:106 package/contents/ui/main.qml:309
 msgid "Bluetooth Settings…"
 msgstr ""
 
@@ -146,99 +146,99 @@ msgstr ""
 msgid "Bluetooth is not ready yet. Try again in a moment."
 msgstr ""
 
-#: package/contents/ui/main.qml:161
+#: package/contents/ui/main.qml:165
 msgid "Couldn't connect to %1. Make sure it is turned on and in range."
 msgstr ""
 
-#: package/contents/ui/main.qml:163
+#: package/contents/ui/main.qml:167
 msgid "Couldn't disconnect from %1."
 msgstr ""
 
-#: package/contents/ui/main.qml:178
+#: package/contents/ui/main.qml:182
 msgid "Bluetooth"
 msgstr ""
 
-#: package/contents/ui/main.qml:194
+#: package/contents/ui/main.qml:198
 msgid "No device selected"
 msgstr ""
 
-#: package/contents/ui/main.qml:197
+#: package/contents/ui/main.qml:201
 msgid "Turning on Bluetooth…"
 msgstr ""
 
-#: package/contents/ui/main.qml:198
+#: package/contents/ui/main.qml:202
 msgid "Connecting…"
 msgstr ""
 
-#: package/contents/ui/main.qml:199
+#: package/contents/ui/main.qml:203
 msgid "Disconnecting…"
 msgstr ""
 
-#: package/contents/ui/main.qml:202
+#: package/contents/ui/main.qml:206
 msgid "Not paired"
 msgstr ""
 
-#: package/contents/ui/main.qml:202 package/contents/ui/main.qml:210
+#: package/contents/ui/main.qml:206 package/contents/ui/main.qml:214
 msgid "Disconnected · Bluetooth is off"
 msgstr ""
 
-#: package/contents/ui/main.qml:206
+#: package/contents/ui/main.qml:210
 #, kde-format
 msgid "Connected · Battery %1%"
 msgstr ""
 
-#: package/contents/ui/main.qml:207
+#: package/contents/ui/main.qml:211
 msgid "Connected"
 msgstr ""
 
-#: package/contents/ui/main.qml:212
+#: package/contents/ui/main.qml:216
 msgid "Disconnected"
 msgstr ""
 
-#: package/contents/ui/main.qml:217
+#: package/contents/ui/main.qml:221
 msgid "Click to choose a device"
 msgstr ""
 
-#: package/contents/ui/main.qml:222
+#: package/contents/ui/main.qml:226
 msgid "Click to disconnect"
 msgstr ""
 
-#: package/contents/ui/main.qml:222
+#: package/contents/ui/main.qml:226
 msgid "Click to connect"
 msgstr ""
 
-#: package/contents/ui/main.qml:277
+#: package/contents/ui/main.qml:281
 #, kde-format
 msgid "Battery charged to %1%."
 msgstr ""
 
-#: package/contents/ui/main.qml:287 package/contents/ui/main.qml:293
+#: package/contents/ui/main.qml:291 package/contents/ui/main.qml:297
 msgid "Bluetooth Quick Connect"
 msgstr ""
 
-#: package/contents/ui/main.qml:299 package/contents/ui/main.qml:438
+#: package/contents/ui/main.qml:303 package/contents/ui/main.qml:444
 msgid "Disconnect"
 msgstr ""
 
-#: package/contents/ui/main.qml:299 package/contents/ui/main.qml:438
+#: package/contents/ui/main.qml:303 package/contents/ui/main.qml:444
 msgid "Connect"
 msgstr ""
 
-#: package/contents/ui/main.qml:343
+#: package/contents/ui/main.qml:347
 msgid "Couldn't turn on Bluetooth."
 msgstr ""
 
-#: package/contents/ui/main.qml:438
+#: package/contents/ui/main.qml:444
 msgid "Choose Device…"
 msgstr ""
 
-#: package/contents/ui/main.qml:505
+#: package/contents/ui/main.qml:511
 #, kde-format
 msgctxt "battery percentage badge on the panel icon"
 msgid "%1%"
 msgstr ""
 
-#: package/contents/ui/main.qml:517
+#: package/contents/ui/main.qml:523
 #, kde-format
 msgctxt "battery percentage shown next to the panel icon"
 msgid "%1%"

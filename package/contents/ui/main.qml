@@ -157,10 +157,14 @@ PlasmoidItem {
             fail(i18n("Bluetooth is not ready yet. Try again in a moment."), call.errorText);
             return;
         }
+        failAction(action, call.errorText);
+    }
+
+    function failAction(action, detail) {
         if (action === "connect") {
-            fail(i18n("Couldn't connect to %1. Make sure it is turned on and in range.", displayName), call.errorText);
+            fail(i18n("Couldn't connect to %1. Make sure it is turned on and in range.", displayName), detail);
         } else {
-            fail(i18n("Couldn't disconnect from %1.", displayName), call.errorText);
+            fail(i18n("Couldn't disconnect from %1.", displayName), detail);
         }
     }
 
@@ -350,8 +354,10 @@ PlasmoidItem {
         id: callTimeout
         interval: 60000
         onTriggered: {
+            const action = root.pendingAction;
             root.activeCall = null;
             root.pendingAction = "";
+            root.failAction(action, "");
         }
     }
 
