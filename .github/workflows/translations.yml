@@ -1,0 +1,38 @@
+name: Translations
+
+on:
+  pull_request:
+    paths: ["package/**", "po/**", ".github/workflows/translations.yml"]
+  push:
+    branches: [main]
+    paths: ["package/**", "po/**", ".github/workflows/translations.yml"]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Install gettext
+        run: sudo apt-get update && sudo apt-get install -y gettext
+
+      - name: Check every translation compiles
+        run: ./po/compile.sh
+
+      - name: Check the translation files match the widget's text
+        run: |
+          # Only compare the strings. Line numbers, dates, flags and wrapping differ between gettext versions and edits.
+          strings() { msgcat --no-location --no-wrap --sort-output "$1" | grep -E '^(msgctxt|msgid|msgstr) '; }
+          cp -r po "$RUNNER_TEMP/committed"
+          ./po/update.sh
+          status=0
+          for f in po/template.pot po/*.po; do
+            if ! diff -u "--label=$f (committed)" "--label=$f (updated)" <(strings "$RUNNER_TEMP/committed/${f#po/}") <(strings "$f"); then
+              echo "::error file=$f::$f is out of date. Run ./po/update.sh and commit the result."
+              status=1
+            fi
+          done
+          exit $status
