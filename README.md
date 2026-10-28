@@ -4,12 +4,12 @@ A KDE Plasma 6 panel widget for one Bluetooth device, like your headphones. Avai
 
 ![The widget in the panel, showing the battery level and its hover tooltip](screenshots/panel.png)
 
-- **Click** the icon to connect, click again to disconnect.
+- **Click** the icon to connect, click again to disconnect. **Middle-click** turns Bluetooth on or off, as in Plasma's own Bluetooth widget. You can pick a different action for each click, such as opening the Bluetooth settings.
 - **Hover** to see whether it's connected and its battery level.
 - The icon is dimmed while disconnected and pulses while connecting.
 - If Bluetooth is off, clicking turns it on first (can be disabled).
 - Shows a notification if connecting fails, e.g. when the device is off or out of range.
-- Optional battery percentage in the panel, either next to the icon or as a badge on it. Next to the icon, it turns red at 15% or below.
+- Optional battery percentage in the panel, either next to the icon or as a badge on it. It turns red at 15% or below. You can change that level.
 - Optional notification when the battery is charged to a set level, 85% by default. It uses the device's charging state if the device reports one, as some game controllers do. Most headphones only report their battery level, so for those it counts as charging while the level goes up. You won't be notified again until the level drops below a second value, 75% by default.
 - Right-click menu: Connect/Disconnect and Bluetooth Settings.
 - Supports a global keyboard shortcut (Configure → Keyboard Shortcuts).
