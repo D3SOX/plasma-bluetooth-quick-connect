@@ -5,6 +5,7 @@ Rules for working on this repo, collected from past corrections.
 ## Testing and screenshots
 
 - Never test on the maintainer's live desktop. Don't move the pointer, hover, type or open windows there. Instead, start a nested headless session: run `kwin_wayland --virtual` and `plasmashell --no-respawn` inside `dbus-run-session`, with a throwaway `HOME`.
+- Set the throwaway `HOME` and every `XDG_*_HOME` before `dbus-run-session` starts. D-Bus-activated services (`kactivitymanagerd`, `kded6`, `kdeconnectd`, ...) inherit the bus daemon's environment, not your script's. Exports made inside the bus leave them on the real `~/.local/share` and `~/.config`, and the nested Application Launcher then writes Plasma's default favorites (browser, Dolphin, System Settings) into the maintainer's real launcher.
 - Never run `pkill -f plasmashell` or any similar pattern. It also kills the real shell. Kill only the PIDs you started, and check their environment or command line first.
 - Screenshots use the "Next to the icon" battery mode. Blur the device's MAC address in the settings screenshot.
 - Don't run `plasmoidviewer`, `qml6` or `spectacle` against the live session either. They open windows and send notifications on the real desktop.
@@ -27,7 +28,7 @@ Rules for working on this repo, collected from past corrections.
    }
    ```
 
-3. Write a session script and run it with `dbus-run-session -- $S/session.sh` in the background:
+3. Write a session script and run it with `$S/session.sh` in the background. It sets up the environment first and only then re-executes itself under `dbus-run-session`:
 
    ```bash
    #!/usr/bin/env bash
@@ -37,6 +38,8 @@ Rules for working on this repo, collected from past corrections.
    export XDG_CURRENT_DESKTOP=KDE KDE_FULL_SESSION=true KDE_SESSION_VERSION=6 XDG_SESSION_TYPE=wayland
    export QT_FORCE_STDERR_LOGGING=1   # without it, QML console output goes nowhere
    unset DISPLAY
+   # start the private bus only now, so the services it activates inherit the env above
+   [ -z "$BTQC_NESTED" ] && BTQC_NESTED=1 exec dbus-run-session -- "$0"
    echo "$DBUS_SESSION_BUS_ADDRESS" > $S/bus
    kwin_wayland --virtual --width 1280 --height 800 --socket btqc-wl --no-lockscreen --no-global-shortcuts > $S/kwin.log 2>&1 &
    echo $! > $S/kwin.pid
