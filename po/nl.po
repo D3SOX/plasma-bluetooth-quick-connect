@@ -131,8 +131,8 @@ msgid ""
 "level goes up."
 msgstr ""
 "Vraag de oplaadstatus van het apparaat op, indien mogelijk. De meeste "
-"koptelefoons geven alleen het accuniveau door, dus wordt tijdens het "
-"opladen alleen gemeld dat de koptelefoon wordt opgeladen."
+"koptelefoons geven alleen het accuniveau door, dus als het percentage "
+"toeneemt, wordt aangenomen dat de koptelefoon wordt opgeladen."
 
 #: package/contents/ui/main.qml:93
 msgid "Bluetooth is turned off."
