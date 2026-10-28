@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: plasma_applet_me.d3sox.bluetoothquickconnect 1.4.0\n"
 "Report-Msgid-Bugs-To: https://github.com/D3SOX/plasma-bluetooth-quick-"
 "connect/issues\n"
-"POT-Creation-Date: 2026-10-28 16:04+0100\n"
+"POT-Creation-Date: 2026-10-28 16:05+0100\n"
 "PO-Revision-Date: 2026-10-27 11:23+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -23,113 +23,141 @@ msgstr ""
 msgid "General"
 msgstr "Algemeen"
 
-#: package/contents/ui/ConfigGeneral.qml:58
+#: package/contents/ui/ConfigGeneral.qml:62
 msgid "%1 (not available)"
 msgstr "%1 (niet beschikbaar)"
 
-#: package/contents/ui/ConfigGeneral.qml:70
+#: package/contents/ui/ConfigGeneral.qml:71
+msgctxt "@item:inlistbox what a click does"
+msgid "Connect or disconnect"
+msgstr "Verbinden of verbinding verbreken"
+
+#: package/contents/ui/ConfigGeneral.qml:72
+msgctxt "@item:inlistbox what a click does"
+msgid "Turn Bluetooth on or off"
+msgstr "Bluetooth in- of uitschakelen"
+
+#: package/contents/ui/ConfigGeneral.qml:73
+msgctxt "@item:inlistbox what a click does"
+msgid "Open Bluetooth settings"
+msgstr "Bluetoothinstellingen openen"
+
+#: package/contents/ui/ConfigGeneral.qml:74
+msgctxt "@item:inlistbox what a click does"
+msgid "Do nothing"
+msgstr "Niets doen"
+
+#: package/contents/ui/ConfigGeneral.qml:81
 msgid "Device:"
 msgstr "Apparaat:"
 
-#: package/contents/ui/ConfigGeneral.qml:83
+#: package/contents/ui/ConfigGeneral.qml:94
 msgid "No paired devices"
 msgstr "Er zijn geen apparaten gekoppeld"
 
-#: package/contents/ui/ConfigGeneral.qml:84
+#: package/contents/ui/ConfigGeneral.qml:95
 msgid "Choose a device…"
 msgstr "Kies een apparaat…"
 
-#: package/contents/ui/ConfigGeneral.qml:108 package/contents/ui/main.qml:309
+#: package/contents/ui/ConfigGeneral.qml:119 package/contents/ui/main.qml:358
 msgid "Bluetooth Settings…"
 msgstr "Bluetoothinstellingen…"
 
-#: package/contents/ui/ConfigGeneral.qml:115
+#: package/contents/ui/ConfigGeneral.qml:126
 msgid "Address: %1"
 msgstr "Adres: %1"
 
-#: package/contents/ui/ConfigGeneral.qml:123
+#: package/contents/ui/ConfigGeneral.qml:134
 msgid ""
 "Pair your device in the Bluetooth settings first. It will then show up here."
 msgstr "Koppel je apparaat via de bluetoothinstellingen om het hier te tonen."
 
-#: package/contents/ui/ConfigGeneral.qml:129
+#: package/contents/ui/ConfigGeneral.qml:140
 msgid "Icon:"
 msgstr "Pictogram:"
 
-#: package/contents/ui/ConfigGeneral.qml:135
+#: package/contents/ui/ConfigGeneral.qml:146
 msgid "Custom icon"
 msgstr "Eigen pictogram"
 
-#: package/contents/ui/ConfigGeneral.qml:135
+#: package/contents/ui/ConfigGeneral.qml:146
 msgid "Using the device's own icon"
 msgstr "Het apparaatpictogram wordt gebruikt"
 
-#: package/contents/ui/ConfigGeneral.qml:159
+#: package/contents/ui/ConfigGeneral.qml:170
 msgctxt "@item:inmenu Open icon chooser dialog"
 msgid "Choose…"
 msgstr "Kiezen…"
 
-#: package/contents/ui/ConfigGeneral.qml:164
+#: package/contents/ui/ConfigGeneral.qml:175
 msgctxt "@item:inmenu"
 msgid "Use Device Icon"
 msgstr "Apparaatpictogram tonen"
 
-#: package/contents/ui/ConfigGeneral.qml:178
+#: package/contents/ui/ConfigGeneral.qml:189
 msgid "Battery percentage:"
 msgstr "Accupercentage:"
 
-#: package/contents/ui/ConfigGeneral.qml:180
+#: package/contents/ui/ConfigGeneral.qml:191
 msgctxt "@item:inlistbox battery percentage in the panel"
 msgid "Hidden"
 msgstr "Verborgen"
 
-#: package/contents/ui/ConfigGeneral.qml:181
+#: package/contents/ui/ConfigGeneral.qml:192
 msgctxt "@item:inlistbox battery percentage in the panel"
 msgid "Badge on the icon"
 msgstr "Embleem op pictogram"
 
-#: package/contents/ui/ConfigGeneral.qml:182
+#: package/contents/ui/ConfigGeneral.qml:193
 msgctxt "@item:inlistbox battery percentage in the panel"
 msgid "Next to the icon"
 msgstr "Naast pictogram"
 
-#: package/contents/ui/ConfigGeneral.qml:191
+#: package/contents/ui/ConfigGeneral.qml:202
 msgid "Show in red at or below:"
 msgstr "Rood tonen bij of onder:"
 
-#: package/contents/ui/ConfigGeneral.qml:195
-#: package/contents/ui/ConfigGeneral.qml:221
-#: package/contents/ui/ConfigGeneral.qml:231
+#: package/contents/ui/ConfigGeneral.qml:206
+#: package/contents/ui/ConfigGeneral.qml:254
+#: package/contents/ui/ConfigGeneral.qml:264
 #, kde-format
 msgctxt "battery percentage"
 msgid "%1%"
 msgstr "%1%"
 
-#: package/contents/ui/ConfigGeneral.qml:201
+#: package/contents/ui/ConfigGeneral.qml:215
+msgid "Left click:"
+msgstr "Linkermuisknop:"
+
+#: package/contents/ui/ConfigGeneral.qml:224
+msgid "Middle click:"
+msgstr "Middelste muisknop:"
+
+#: package/contents/ui/ConfigGeneral.qml:234
 msgid "Behavior:"
 msgstr "Gedrag:"
 
-#: package/contents/ui/ConfigGeneral.qml:202
+#: package/contents/ui/ConfigGeneral.qml:235
 msgid "Turn on Bluetooth if it is off"
 msgstr "Bluetooth inschakelen indien uitgeschakeld"
 
-#: package/contents/ui/ConfigGeneral.qml:207
+#: package/contents/ui/ConfigGeneral.qml:240
 msgid "Notify when connecting or disconnecting fails"
 msgstr "Melding tonen als (verbroken) verbinding mislukt"
 
-#: package/contents/ui/ConfigGeneral.qml:212
+#: package/contents/ui/ConfigGeneral.qml:245
 msgid "Notify when the battery is charged"
 msgstr "Melding tonen als de accu opgeladen is"
 
-#: package/contents/ui/ConfigGeneral.qml:217
+#: package/contents/ui/ConfigGeneral.qml:250
 msgid "Notify at:"
 msgstr "Melding tonen bij:"
 
-#: package/contents/ui/ConfigGeneral.qml:227
+#: package/contents/ui/ConfigGeneral.qml:260
 msgid "Notify again after dropping below:"
 msgstr "Opnieuw melding tonen onder de:"
 
-#: package/contents/ui/ConfigGeneral.qml:239
+#: package/contents/ui/ConfigGeneral.qml:272
 msgid ""
 "Uses the device's charging state if it reports one. Most headphones only "
 "report their battery level, so for those it counts as charging while the "
@@ -143,113 +171,149 @@ msgstr ""
 msgid "Bluetooth is turned off."
 msgstr "Bluetooth is uitgeschakeld."
 
-#: package/contents/ui/main.qml:128
+#: package/contents/ui/main.qml:159
 msgid "%1 is not paired with this computer."
 msgstr "‘%1’ is niet gekoppeld aan deze computer."
 
-#: package/contents/ui/main.qml:154
+#: package/contents/ui/main.qml:185
 msgid "%1 is already connecting."
 msgstr "Er wordt al verbinding gemaakt met ‘%1’."
 
-#: package/contents/ui/main.qml:157
+#: package/contents/ui/main.qml:188
 msgid "Bluetooth is not ready yet. Try again in a moment."
 msgstr "Bluetooth is nog niet gereed; probeer het zometeen opnieuw."
 
-#: package/contents/ui/main.qml:165
+#: package/contents/ui/main.qml:196
 msgid "Couldn't connect to %1. Make sure it is turned on and in range."
 msgstr ""
 "Er kan geen verbinding worden gemaakt met ‘%1’. Zorg dat het apparaat is "
 "ingeschakeld en dichtbij is."
 
-#: package/contents/ui/main.qml:167
+#: package/contents/ui/main.qml:198
 msgid "Couldn't disconnect from %1."
 msgstr "De verbinding met ‘%1’ kan niet worden verbroken."
 
-#: package/contents/ui/main.qml:182
+#: package/contents/ui/main.qml:213
 msgid "Bluetooth"
 msgstr "Bluetooth"
 
-#: package/contents/ui/main.qml:198
+#: package/contents/ui/main.qml:229
 msgid "No device selected"
 msgstr "Er is geen apparaat gekozen"
 
-#: package/contents/ui/main.qml:201
+#: package/contents/ui/main.qml:232
 msgid "Turning on Bluetooth…"
 msgstr "Bezig met inschakelen van bluetooth…"
 
-#: package/contents/ui/main.qml:202
+#: package/contents/ui/main.qml:233
 msgid "Connecting…"
 msgstr "Bezig met verbinden…"
 
-#: package/contents/ui/main.qml:203
+#: package/contents/ui/main.qml:234
 msgid "Disconnecting…"
 msgstr "Bezig met verbreken van verbinding…"
 
-#: package/contents/ui/main.qml:206
+#: package/contents/ui/main.qml:237
 msgid "Not paired"
 msgstr "Niet gekoppeld"
 
-#: package/contents/ui/main.qml:206 package/contents/ui/main.qml:214
+#: package/contents/ui/main.qml:237 package/contents/ui/main.qml:245
 msgid "Disconnected · Bluetooth is off"
 msgstr "Verbinding verbroken · Bluetooth is uitgeschakeld"
 
-#: package/contents/ui/main.qml:210
+#: package/contents/ui/main.qml:241
 #, kde-format
 msgid "Connected · Battery %1%"
 msgstr "Verbonden · Accuniveau: %1%"
 
-#: package/contents/ui/main.qml:211
+#: package/contents/ui/main.qml:242
 msgid "Connected"
 msgstr "Verbonden"
 
-#: package/contents/ui/main.qml:216
+#: package/contents/ui/main.qml:247
 msgid "Disconnected"
 msgstr "Verbinding verbroken"
 
-#: package/contents/ui/main.qml:221
+#: package/contents/ui/main.qml:254
+msgid "Middle-click to choose a device"
+msgstr "Middelklik om een apparaat te kiezen"
+
+#: package/contents/ui/main.qml:254
 msgid "Click to choose a device"
 msgstr "Klik om een apparaat te kiezen"
 
-#: package/contents/ui/main.qml:226
+#: package/contents/ui/main.qml:260
+msgid "Middle-click to disconnect"
+msgstr "Middelklik om de verbinding te verbreken"
+
+#: package/contents/ui/main.qml:260
 msgid "Click to disconnect"
 msgstr "Klik om de verbinding te verbreken"
 
-#: package/contents/ui/main.qml:226
+#: package/contents/ui/main.qml:262
+msgid "Middle-click to connect"
+msgstr "Middelklik om te verbinden"
+
+#: package/contents/ui/main.qml:262
 msgid "Click to connect"
 msgstr "Klik om te verbinden"
 
-#: package/contents/ui/main.qml:281
+#: package/contents/ui/main.qml:265
+msgid "Middle-click to turn off Bluetooth"
+msgstr "Middelklik om bluetooth uit te schakelen"
+
+#: package/contents/ui/main.qml:265
+msgid "Click to turn off Bluetooth"
+msgstr "Klik om bluetooth uit te schakelen"
+
+#: package/contents/ui/main.qml:267
+msgid "Middle-click to turn on Bluetooth"
+msgstr "Middelklik om bluetooth in te schakelen"
+
+#: package/contents/ui/main.qml:267
+msgid "Click to turn on Bluetooth"
+msgstr "Klik om bluetooth in te schakelen"
+
+#: package/contents/ui/main.qml:269
+msgid "Middle-click to open Bluetooth settings"
+msgstr "Middelklik om de bluetoothinstellingen te openen"
+
+#: package/contents/ui/main.qml:269
+msgid "Click to open Bluetooth settings"
+msgstr "Klik om de bluetoothinstellingen te openen"
+
+#: package/contents/ui/main.qml:326
 #, kde-format
 msgid "Battery charged to %1%."
 msgstr "De accu is opgeladen tot %1%."
 
-#: package/contents/ui/main.qml:291 package/contents/ui/main.qml:297
+#: package/contents/ui/main.qml:336 package/contents/ui/main.qml:342
 msgid "Bluetooth Quick Connect"
 msgstr "Snelle bluetoothverbinding"
 
-#: package/contents/ui/main.qml:303 package/contents/ui/main.qml:444
+#: package/contents/ui/main.qml:352 package/contents/ui/main.qml:493
 msgid "Disconnect"
 msgstr "Verbinding verbreken"
 
-#: package/contents/ui/main.qml:303 package/contents/ui/main.qml:444
+#: package/contents/ui/main.qml:352 package/contents/ui/main.qml:493
 msgid "Connect"
 msgstr "Verbinden"
 
-#: package/contents/ui/main.qml:347
+#: package/contents/ui/main.qml:396
 msgid "Couldn't turn on Bluetooth."
 msgstr "Bluetooth kan niet worden ingeschakeld."
 
-#: package/contents/ui/main.qml:444
+#: package/contents/ui/main.qml:493
 msgid "Choose Device…"
 msgstr "Kies een apparaat…"
 
-#: package/contents/ui/main.qml:521
+#: package/contents/ui/main.qml:571
 #, kde-format
 msgctxt "battery percentage badge on the panel icon"
 msgid "%1%"
 msgstr "%1%"
 
-#: package/contents/ui/main.qml:533
+#: package/contents/ui/main.qml:583
 #, kde-format
 msgctxt "battery percentage shown next to the panel icon"
 msgid "%1%"

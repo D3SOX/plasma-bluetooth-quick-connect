@@ -31,6 +31,10 @@ KCMUtils.SimpleKCM {
     property bool cfg_showBatteryDefault
     property alias cfg_lowBatteryLevel: lowBatterySpin.value
     property int cfg_lowBatteryLevelDefault
+    property string cfg_leftClickAction
+    property string cfg_leftClickActionDefault
+    property string cfg_middleClickAction
+    property string cfg_middleClickActionDefault
     property alias cfg_powerOnAdapter: powerOnCheck.checked
     property bool cfg_powerOnAdapterDefault
     property alias cfg_notifyOnError: notifyCheck.checked
@@ -62,6 +66,13 @@ KCMUtils.SimpleKCM {
         }
         return options;
     }
+
+    readonly property var clickActions: [
+        { text: i18nc("@item:inlistbox what a click does", "Connect or disconnect"), value: "connection" },
+        { text: i18nc("@item:inlistbox what a click does", "Turn Bluetooth on or off"), value: "bluetooth" },
+        { text: i18nc("@item:inlistbox what a click does", "Open Bluetooth settings"), value: "settings" },
+        { text: i18nc("@item:inlistbox what a click does", "Do nothing"), value: "none" },
+    ]
 
     readonly property var selectedOption: deviceOptions.find(option => option.address === cfg_deviceAddress) ?? null
 
@@ -194,6 +205,28 @@ KCMUtils.SimpleKCM {
             to: 100
             textFromValue: (value, locale) => i18nc("battery percentage", "%1%", value)
             valueFromText: (text, locale) => parseInt(text)
+        }
+
+        Item {
+            Kirigami.FormData.isSection: true
+        }
+
+        QQC2.ComboBox {
+            Kirigami.FormData.label: i18n("Left click:")
+            model: page.clickActions
+            textRole: "text"
+            valueRole: "value"
+            currentIndex: page.clickActions.findIndex(action => action.value === page.cfg_leftClickAction)
+            onActivated: page.cfg_leftClickAction = currentValue
+        }
+
+        QQC2.ComboBox {
+            Kirigami.FormData.label: i18n("Middle click:")
+            model: page.clickActions
+            textRole: "text"
+            valueRole: "value"
+            currentIndex: page.clickActions.findIndex(action => action.value === page.cfg_middleClickAction)
+            onActivated: page.cfg_middleClickAction = currentValue
         }
 
         QQC2.CheckBox {

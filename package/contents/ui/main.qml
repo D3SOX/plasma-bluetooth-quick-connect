@@ -124,6 +124,37 @@ PlasmoidItem {
         }
     }
 
+    // Like the middle click on Plasma's own Bluetooth widget.
+    function toggleBluetooth() {
+        clearError();
+        const enable = !radioOn;
+        if (enable) {
+            BluezQt.Manager.bluetoothBlocked = false;
+        } else if (pendingAction === "power") {
+            pendingAction = ""; // stops powerWatcher, which would turn it back on
+        }
+        const adapters = BluezQt.Manager.adapters;
+        for (let i = 0; i < adapters.length; i++) {
+            adapters[i].powered = enable;
+        }
+        if (!enable) {
+            BluezQt.Manager.bluetoothBlocked = true;
+        }
+    }
+
+    function openBluetoothSettings() {
+        KCMUtils.KCMLauncher.openSystemSettings("kcm_bluetooth");
+    }
+
+    // One of "connection", "bluetooth", "settings" or "none", as chosen for a mouse button.
+    function runAction(action) {
+        switch (action) {
+        case "connection": toggle(); break;
+        case "bluetooth": toggleBluetooth(); break;
+        case "settings": openBluetoothSettings(); break;
+        }
+    }
+
     function notPairedMessage() {
         return i18n("%1 is not paired with this computer.", displayName);
     }
@@ -216,14 +247,28 @@ PlasmoidItem {
         return i18n("Disconnected");
     }
 
-    function hintText() {
-        if (!deviceAddress) {
-            return i18n("Click to choose a device");
+    function hintText(action, middle) {
+        switch (action) {
+        case "connection":
+            if (!deviceAddress) {
+                return middle ? i18n("Middle-click to choose a device") : i18n("Click to choose a device");
+            }
+            if (busy || (!device && radioOn)) {
+                return "";
+            }
+            if (connected) {
+                return middle ? i18n("Middle-click to disconnect") : i18n("Click to disconnect");
+            }
+            return middle ? i18n("Middle-click to connect") : i18n("Click to connect");
+        case "bluetooth":
+            if (radioOn) {
+                return middle ? i18n("Middle-click to turn off Bluetooth") : i18n("Click to turn off Bluetooth");
+            }
+            return middle ? i18n("Middle-click to turn on Bluetooth") : i18n("Click to turn on Bluetooth");
+        case "settings":
+            return middle ? i18n("Middle-click to open Bluetooth settings") : i18n("Click to open Bluetooth settings");
         }
-        if (busy || (!device && radioOn)) {
-            return "";
-        }
-        return connected ? i18n("Click to disconnect") : i18n("Click to connect");
+        return "";
     }
 
     // Remember the device name so we can still show it while the device is gone.
@@ -295,7 +340,11 @@ PlasmoidItem {
     Plasmoid.onActivated: toggle()
 
     toolTipMainText: deviceAddress ? displayName : i18n("Bluetooth Quick Connect")
-    toolTipSubText: [statusText(), lastError, lastErrorDetail, hintText()].filter(line => line).join("\n")
+    toolTipSubText: [
+        statusText(), lastError, lastErrorDetail,
+        hintText(Plasmoid.configuration.leftClickAction, false),
+        hintText(Plasmoid.configuration.middleClickAction, true),
+    ].filter(line => line).join("\n")
     toolTipTextFormat: Text.PlainText
 
     Plasmoid.contextualActions: [
@@ -308,7 +357,7 @@ PlasmoidItem {
         PlasmaCore.Action {
             text: i18n("Bluetooth Settings…")
             icon.name: "preferences-system-bluetooth"
-            onTriggered: KCMUtils.KCMLauncher.openSystemSettings("kcm_bluetooth")
+            onTriggered: root.openBluetoothSettings()
         }
     ]
 
@@ -477,8 +526,9 @@ PlasmoidItem {
         Layout.maximumHeight: vertical ? Layout.minimumHeight : Infinity
 
         hoverEnabled: true
-        acceptedButtons: Qt.LeftButton
-        onClicked: root.toggle()
+        acceptedButtons: Qt.LeftButton | Qt.MiddleButton
+        onClicked: mouse => root.runAction(mouse.button === Qt.MiddleButton
+            ? Plasmoid.configuration.middleClickAction : Plasmoid.configuration.leftClickAction)
 
         Kirigami.Icon {
             id: deviceIcon

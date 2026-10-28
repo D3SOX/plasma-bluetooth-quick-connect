@@ -35,6 +35,14 @@
             <min>0</min>
             <max>100</max>
         </entry>
+        <entry name="leftClickAction" type="String">
+            <label>What a left click does: connection (connect or disconnect), bluetooth (turn Bluetooth on or off), settings (open Bluetooth settings) or none</label>
+            <default>connection</default>
+        </entry>
+        <entry name="middleClickAction" type="String">
+            <label>What a middle click does, with the same values as leftClickAction</label>
+            <default>bluetooth</default>
+        </entry>
         <entry name="powerOnAdapter" type="Bool">
             <label>Turn Bluetooth on when connecting while it is off</label>
             <default>true</default>
